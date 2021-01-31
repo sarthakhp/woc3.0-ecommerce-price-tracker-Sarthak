@@ -1,0 +1,149 @@
+{% extends 'base1.html' %}
+
+{% block title %}
+Home
+{% endblock title %}
+
+{% block head %}
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Drop Alert thru Email</title>
+    <style>
+        h1 {
+            text-align: center;
+            margin-top: 0px;
+            font-size: 75px;
+            font-family:'Courier New', Courier, monospace;
+            font-style: bold;
+            
+        }
+        * {
+            text-align: center;
+            margin-top: 0px;
+            
+            font-size: 25px;
+        }
+        input[type='text']{
+            widows: 100px;
+            margin-bottom: 10px;
+        }
+    </style>
+{% endblock head %}
+
+{% block body %}
+
+    <h1><b>ENTER LINK</b></h1>
+    <script>
+        function validateForm() {
+            var x = document.forms["myForm"]["fname"].value;
+            if (x == "") {
+              alert("Name must be filled out");
+              return false;
+            }
+          }
+    </script>
+    <form name="myForm" action="/" onsubmit="return validateForm()" method="GET" required>
+        <label for="link"></label>
+        <input type="text" id="link" name = "link" placeholder = "link" ><br>
+
+        <label for="email" >Email address:</label><br>
+        <input type="email" id="email" name = "email" placeholder = "email"><br>
+
+        <label for="time_final">Enter (in hours) when to update you for price</label><br>
+        <input type="text" id="time_final" name = "time_final" placeholder = "Frequency of price update" ><br>
+        
+      
+        <script>
+            var inputEl = document.getElementById("link");
+
+            function getWidthOfInput() {
+                var tmp = document.createElement("span");
+                tmp.className = "input-element tmp-element";
+                tmp.innerHTML = inputEl.value.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+                document.body.appendChild(tmp);
+                var theWidth = tmp.getBoundingClientRect().width;
+                document.body.removeChild(tmp);
+                if (theWidth < 400) {
+                    theWidth = 400;
+                }
+                else {
+                    theWidth = theWidth*1.45;
+                }
+                return theWidth;
+            }
+
+            function adjustWidthOfInput() {
+                inputEl.style.width = getWidthOfInput() + "px";
+            }
+
+            adjustWidthOfInput();
+            inputEl.onkeyup = adjustWidthOfInput;
+
+        </script>
+        <script>
+            var inputEl2 = document.getElementById("email");
+
+            function getWidthOfInput2() {
+                var tmp = document.createElement("span");
+                tmp.className = "input-element tmp-element";
+                tmp.innerHTML = inputEl2.value.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+                document.body.appendChild(tmp);
+                var theWidth = tmp.getBoundingClientRect().width;
+                document.body.removeChild(tmp);
+                if (theWidth < 400) {
+                    theWidth = 400;
+                }
+                else {
+                    theWidth = theWidth*1.45;
+                }
+                return theWidth;
+            }
+
+            function adjustWidthOfInput2() {
+                inputEl2.style.width = getWidthOfInput2() + "px";
+            }
+
+            adjustWidthOfInput2();
+            inputEl2.onkeyup = adjustWidthOfInput2;
+
+        </script>
+        <script>
+            var inputEl3 = document.getElementById("time_final");
+
+            function getWidthOfInput3() {
+                var tmp = document.createElement("span");
+                tmp.className = "input-element tmp-element";
+                tmp.innerHTML = inputEl3.value.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+                document.body.appendChild(tmp);
+                var theWidth = tmp.getBoundingClientRect().width;
+                document.body.removeChild(tmp);
+                if (theWidth < 400) {
+                    theWidth = 400;
+                }
+                else {
+                    theWidth = theWidth*1.45;
+                }
+                return theWidth;
+            }
+
+            function adjustWidthOfInput3() {
+                inputEl3.style.width = getWidthOfInput3() + "px";
+            }
+
+            adjustWidthOfInput3();
+            inputEl3.onkeyup = adjustWidthOfInput3;
+
+        </script>
+        <input type="submit" value="Submit">
+    </form>
+
+      {% if data %}
+        <h3>{{data.site}}</h3>
+        <h3>{{data.product_name}}</h3>
+        <h3>{{data.price}}</h3>
+        <img src={{data.img_link}}  height="300" alt="">
+
+      {% endif %}
+
+{% endblock body %}
+
